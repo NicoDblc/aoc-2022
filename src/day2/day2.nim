@@ -2,7 +2,7 @@ import strutils
 import std/tables
 
 # X = Rock
-# Y = Papwer
+# Y = Paper
 # Z = Scissor
 var scoreMap = {"X": 1, "Y": 2, "Z": 3}.toTable
 var winMap = {"X": "C", "Y": "A", "Z": "B"}.toTable
@@ -13,9 +13,8 @@ var drawTable = {"A": "X", "B": "Y", "C": "Z"}.toTable
 # Z = Win
 var p2scoreMap = {"X": 0, "Y": 3, "Z": 6}.toTable
 var loseRule = {"A": "Z", "B": "X", "C": "Y"}.toTable
-var drawRule = {"A": "X", "B": "Y", "C": "Z"}.toTable
 var winRule = {"A": "Y", "B": "Z", "C": "X"}.toTable
-var rules = {"X": loseRule, "Y": drawRule, "Z": winRule}.toTable
+var rules = {"X": loseRule, "Y": drawTable, "Z": winRule}.toTable
 
 proc fight(elf: string, player: string): int =
     if drawTable[elf] == player:
