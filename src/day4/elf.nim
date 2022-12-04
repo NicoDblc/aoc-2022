@@ -1,7 +1,7 @@
 import strutils
 
 type
-    SectionDefinition* = tuple
+    SectionDefinition = tuple
         sectionStart: int
         sectionEnd: int
     ElfPair* = object
@@ -9,13 +9,13 @@ type
         second: SectionDefinition
 
 # Section Creation
-proc createSection*(rawSection: string) : SectionDefinition = 
+proc createSection(rawSection: string) : SectionDefinition = 
     var sectionData = rawSection.split("-")
-    result = (sectionStart: sectionData[0].parseInt(), sectionEnd: sectionData[1].parseInt())
+    (sectionStart: sectionData[0].parseInt(), sectionEnd: sectionData[1].parseInt())
 
 proc createElfPair*(rawPair: string) : ElfPair =
     var rawElfPair = rawPair.split(",")
-    result = ElfPair(first: createSection(rawElfPair[0]), second: createSection(rawElfPair[1]))
+    ElfPair(first: createSection(rawElfPair[0]), second: createSection(rawElfPair[1]))
 # End Section Creation
 
 # Section Tests
